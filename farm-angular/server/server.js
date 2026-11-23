@@ -5,7 +5,8 @@ const { DatabaseSync } = require('node:sqlite');
 const S = require('./schema');
 
 const PORT = +process.env.PORT || 3000;
-const DB_FILE = process.env.DB_FILE || path.join(__dirname, 'data', 'farm.db');
+const BASE_DIR = process.env.VERCEL ? '/tmp' : __dirname;
+const DB_FILE = process.env.DB_FILE || path.join(BASE_DIR, 'data', 'farm.db');
 const BACKUP_DIR = process.env.BACKUP_DIR || path.join(path.dirname(DB_FILE), 'backups');
 const PUB = path.join(__dirname, 'public');
 const SESSION_MS = 180 * 24 * 3600 * 1000; // الدخول يفضل محفوظ 180 يوم
